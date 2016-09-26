@@ -13,23 +13,50 @@
   with the following algoritm 
   
   ```
-      i = 1, j = 0
-      swift_table[0] == 1 // because char at i + j and char at j are the same
-      while (i + j< m) // m is the length of the pattern
-      {
-          if (p[i + j] == p[j]) // char at i+j is same char as char at j
-          {
-              swift_table[i+j] = i
-              j++
-          }
-          else {
-              if (j==0) {
-                 swift_table[
-              }
-          
-          }
-      
-      }
+    /// Assign values to a KMP Swift table which will be used to match ocurrences with the text
+    /// - Parameter pattern: the pattern to be matched.
+    /// - Returns: A list of SwiftTableContent structs that represents the swift table
+    ///
+    /// -Note:
+    ///  For the pattern "ccannc" this method will return a list of structs representing
+    ///  the following table
+    ///
+    /// ----------------------------------
+    /// | index || 0 | 1 | 2 | 3 | 4 | 5 |
+    /// ----------------------------------
+    /// | char  || c | c | a | n | n | c |
+    /// ----------------------------------
+    /// | value || 1 | 1 | 3 | 4 | 5 | 5 |
+    ///
+    /// - Important: The Algorithm used to get the KMP swift table has running time O(n)
+    public func kmpSwiftTable (forPattern pattern : String) -> [SwiftTableContent]
+    {
+        var table = initTable(withPattern: pattern)
+        var i = 1, j=0 // i = 1 to move pointer one char forward.
+        while (i+j<pattern.characters.count)
+        {
+            if table[i+j].char == table[j].char
+            {
+                // chars of i + j and j indexes are the same
+                table[i+j].value = i
+                j+=1
+            }
+            else {
+                // Chars at i + j and j indexes are not the same
+                if j==0 {
+                    table[i].value = i + 1;
+                }
+                // checks for negative values
+                if (j-1 < 0)
+                {
+                    j = 1
+                }
+                i = i + table[j-1].value
+                j = j - table[j-1].value
+            }
+        }
+        return table
+    }
       
       
   ```
