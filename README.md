@@ -21,13 +21,13 @@
    "this is a string to be matched".matchWithKMP(forPattern: "astring") 
    
    // making sure it matches.
-   let firstOcurrence = "this is a string to be matched".matchWithKMP(forPattern: "astring")
+   let firstOcurrence = "this is a string to be matched".matchWithKMP(forPattern: "a string")
    if (firstOcurrence.matched)
    {
        // First ocurrence of pattern found in string
        let fromIndex = firstOcurrence.fromIndex
        let toIndex = firstOcurrence.toIndex
-       print("First ocurrence found from index: \(fromIndex) to index \(toIndex)") 
+       print("First ocurrence found from index: \(fromIndex) to index \(toIndex)") // found from index 8 to 15
    }
    else
    {
