@@ -24,6 +24,9 @@ if (ocurrences.matched)
    print("Matched from index: \(ocurrences.fromIndex) to index: \(ocurrences.toIndex)")
 }
 
+// Matching icons
+"🚕🚕🚖🚖🚀🚏🚤🚅🚅🚅🚝🚤🚔".matchWithKMP(forPattern: "🚅🚅🚅") // matched
+
 
 
 
