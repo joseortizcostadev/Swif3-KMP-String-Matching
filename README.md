@@ -60,7 +60,81 @@
       
       
   ```
-
+• Now that we got the KMP swift table from the pattern, we can start looking for ocurrences in the string 
+```
+    /// This method can be called from Self String to perform string matching using KMP string
+    /// searching algorithm. If the pattern exist in the text, it will find the first ocurrence
+    /// of the pattern.
+    /// - Parameter pattern: Represents the pattern to be matched against the text
+    /// - Important: Ocurrences are counted from 0...m-1 where m is the length of the text to be matched
+    ///
+    /// The following code sniped is an example of how to use this method
+    ///     let result = "canccanccannca".matchWithKMP(forPattern: "ccannc")
+    ///     if (result.matched)
+    ///     {
+    ///        print("First ocurrence found: ")
+    ///        print("from index: \(result.fromIndex) to index \(result.toIndex)")
+    ///     }
+    ///     else
+    ///     {
+    ///        print("No ocurrences found")
+    ///     }
+    ///
+    ///- Note: This method only match the first ocurrence found. Other ocurrences in the
+    ///               same text after the first one won't be taken into account.
+    ///- Returns:
+    ///     - matched: true if the pattern was found on the text. Otherwise, returns false.
+    ///     - fromIndex:    If matched, returns the first index of the first
+    ///                     ocurrence found in the String. Otherwise, returns -1
+    ///     - toIndex:      If matched, returns the last index of the first ocurrence
+    ///                     found. Otherwise, returns -1
+    ///- Process done by this method for every iteration of the outer loop
+    ///  i = 0, j={0...1} -> i=1, j=0 -> matched first character c in text in index 0
+    ///  i = 1, j={0} -> i=2, j=0 -> not matched character 
+    ///  i = 2, j={0} -> i= 3, j= 0 -> not matched character
+    ///  i = 3, j={0...4} -> i=7, j=0 -> matched characters ccan in text from index 3 to 6
+    ///  i = 7, j={0....6} -> we found our first ocurrence from index 7 to 12 in string because j>=patternLength.
+    
+    public func matchWithKMP(forPattern pattern : String) ->(matched : Bool, fromIndex : Int, toIndex : Int)
+    {
+        
+        let textLength = self.characters.count
+        let patternLength = pattern.characters.count
+        var toIndex = -1
+        let st = kmpSwiftTable(forPattern: pattern) // swift table for this pattern
+        var i = 0, j=0
+        var tchar: Character
+        while (i + j < textLength)
+        {
+            tchar = self[self.index(self.startIndex, offsetBy: i+j)] // char from text at i + j index
+            
+            // while the char at index i + j of the text is equal to the char at index j of pattern
+            // then, increment j
+            while ( tchar == st[j].char )
+            {
+                j+=1
+                if (j>=patternLength) // First ocurrence of pattern found at index i of text
+                {
+                    toIndex = i + (patternLength - 1)
+                    return (true, i, toIndex)
+                }
+                // pattern not found completely, then update char of text to the next char
+                tchar = self[self.index(self.startIndex, offsetBy: i+j)]
+            }
+            if (j-1 <= 0) // check for negative values
+            {
+                i = i + 1
+                j = 0
+            }
+            else
+            {
+                i = i + st[j-1].value // increment i
+                j = j - st[j-1].value // decrement j
+            }
+        }
+        return (false, -1, toIndex) // pattern not found.
+    }
+```
 <h1> Installation </h1>
 • Copy and paste KMP.swift file into your project directory.
 
