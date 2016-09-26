@@ -19,5 +19,20 @@
    
    // matched = false, fromIndex = -1, toIndex = -1
    "this is a string to be matched".matchWithKMP(forPattern: "astring") 
+   
+   // making sure it matches.
+   let firstOcurrence = "this is a string to be matched".matchWithKMP(forPattern: "astring")
+   if (firstOcurrence.matched)
+   {
+       // First ocurrence of pattern found in string
+       let fromIndex = firstOcurrence.fromIndex
+       let toIndex = firstOcurrence.toIndex
+       print("First ocurrence found from index: \(fromIndex) to index \(toIndex)") 
+   }
+   else
+   {
+       print("Pattern not found in string")
+   }
+   
 ```
 
