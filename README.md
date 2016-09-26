@@ -14,5 +14,18 @@
    "🚕🚕🚖🚖🚀🚏🚤🚅🚅🚅🚝🚤🚔".matchWithKMP(forPattern: "🚅🚅🚅") // mathed = true, fromIndex = 7, toIndex = 2 <br>
    "this is a string to be matched".matchWithKMP(forPattern: "astring") // matched = false, fromIndex = -1, toIndex = -1'''
 
+```html
+<h2>Example of code</h2>
 
+<pre>
+    <div class="container">
+        <div class="block two first">
+            <h2>Your title</h2>
+            <div class="wrap">
+            //Your content
+            </div>
+        </div>
+    </div>
+</pre>
+```
 
