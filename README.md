@@ -171,4 +171,5 @@
    }
    
 ```
-
+<h1> Comming Soon </h1>
+• So far, this extension only finds the first ocurrence of a pattern matched against a string with a average run time of O(n + m) which is very efficient compared to the standar string matching algorithm that has a run time of O(n^2) in the worst case. Now, I am working in a implementation to find all the ocurrences in the string using Knuth–Morris–Pratt algorithm  
