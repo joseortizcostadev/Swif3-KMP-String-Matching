@@ -150,7 +150,13 @@
    // matched = false, fromIndex = -1, toIndex = -1
    "this is a string to be matched".matchWithKMP(forPattern: "astring") 
    
-   // making sure it matches.
+   // matched = true, fromIndex = 0, toIndex = 0
+   " ".matchWithKMP(forPattern: " ")
+   
+   // matched = false, fromIndex = -1, toIndex = -1
+   "".matchWithKMP(forPattern: "") // note that matching "" against "" fails because it does not have any length.
+   
+   // Assigning matching results to properties (constants in this context)
    let firstOcurrence = "this is a string to be matched".matchWithKMP(forPattern: "a string")
    if (firstOcurrence.matched)
    {
