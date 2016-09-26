@@ -13,13 +13,9 @@ extension String {
     /// searching algorithm. If the pattern exist in the text, it will find the first ocurrence
     /// of the pattern.
     /// - Parameter pattern: Represents the pattern to be matched against the text
-    ///
-    ///
-    ///  - Important: Ocurrences are counted from 0...m-1 where m is the length of the text to be matched
+    /// - Important: Ocurrences are counted from 0...m-1 where m is the length of the text to be matched
     ///
     /// The following code sniped is an example of how to use this method
-    ///
-    ///
     ///     let result = "thisisjustanexample".matchWithKMP(forPattern: "isis")
     ///     if (result.matched)
     ///     {
@@ -31,9 +27,9 @@ extension String {
     ///        print("No ocurrences found")
     ///     }
     ///
-    ///  - Note: This method only match the first ocurrence found. Other ocurrences in the
+    ///- Note: This method only match the first ocurrence found. Other ocurrences in the
     ///               same text after the first one won't be taken into account.
-    /// - Returns:
+    ///- Returns:
     ///     - matched: true if the pattern was found on the text. Otherwise, returns false.
     ///     - fromIndex:    If matched, returns the first index of the first
     ///                     ocurrence found in the String. Otherwise, returns -1
@@ -70,15 +66,12 @@ extension String {
             {
                 i = i + 1
                 j = 0
-                
             }
             else
             {
                 i = i + st[j-1].value // increment i
                 j = j - st[j-1].value // decrement j
             }
-            
-            
         }
         return (false, -1, toIndex) // pattern not found.
     }
@@ -101,12 +94,10 @@ extension String {
     /// - Important: The Algorithm used to get the KMP swift table has running time O(n)
     public func kmpSwiftTable (forPattern pattern : String) -> [SwiftTableContent]
     {
-        
         var table = initTable(withPattern: pattern)
         var i = 1, j=0 // i = 1 to move pointer one char forward.
         while (i+j<pattern.characters.count)
         {
-            
             if table[i+j].char == table[j].char
             {
                 // chars of i + j and j indexes are the same
@@ -127,7 +118,6 @@ extension String {
                 j = j - table[j-1].value
             }
         }
-        
         return table
     }
     
@@ -168,8 +158,8 @@ extension String {
     }
     
     /// Struct representing a column of a KMP Swift table
-    public struct SwiftTableContent {
-        
+    public struct SwiftTableContent 
+    {
         var index: Int;
         var char: Character?;
         var value: Int;
