@@ -11,8 +11,13 @@
 <h1> Examples </h1>
 • These are some examples implementing the KMP String extension.<br>
 ```swift
-   "this is a string to be matched".matchWithKMP(forPattern: "g to") // matched = true, fromIndex = 15, toIndex = 18 <br>
-   "🚕🚕🚖🚖🚀🚏🚤🚅🚅🚅🚝🚤🚔".matchWithKMP(forPattern: "🚅🚅🚅") // mathed = true, fromIndex = 7, toIndex = 2 <br>
-   "this is a string to be matched".matchWithKMP(forPattern: "astring") // matched = false, fromIndex = -1, toIndex = -1'''
+   // matched = true, fromIndex = 15, toIndex = 18 
+   "this is a string to be matched".matchWithKMP(forPattern: "g to") 
+   
+   // matched = true, fromIndex = 7, toIndex = 2
+   "🚕🚕🚖🚖🚀🚏🚤🚅🚅🚅🚝🚤🚔".matchWithKMP(forPattern: "🚅🚅🚅") 
+   
+   // matched = false, fromIndex = -1, toIndex = -1
+   "this is a string to be matched".matchWithKMP(forPattern: "astring") 
 ```
 
