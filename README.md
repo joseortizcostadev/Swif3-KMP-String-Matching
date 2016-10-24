@@ -144,7 +144,7 @@
    // matched = true, fromIndex = 15, toIndex = 18 
    "this is a string to be matched".matchWithKMP(forPattern: "g to") 
    
-   // matched = true, fromIndex = 7, toIndex = 2
+   // matched = true, fromIndex = 7, toIndex = 9
    "🚕🚕🚖🚖🚀🚏🚤🚅🚅🚅🚝🚤🚔".matchWithKMP(forPattern: "🚅🚅🚅") 
    
    // matched = false, fromIndex = -1, toIndex = -1
